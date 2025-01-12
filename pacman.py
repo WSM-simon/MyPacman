@@ -756,7 +756,7 @@ while running:
         else:
             g.target = g.get_g_target()
             g.calculate_direction(board, canvas_size)
-        # g.move(dx * 0.8 , board, canvas_size)
+        g.move(dx * 0.8 , board, canvas_size)
 
         # ghost collision
         if player.is_collide_with(g.get_rect()):

@@ -1,6 +1,6 @@
 # MyPacman
 
-A python realization of pacman
+A pygame realization of pacman
 
 Works perfectly of Windows enviroment and prefered 1920 * 1080 resolution
 

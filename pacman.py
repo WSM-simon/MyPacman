@@ -310,7 +310,7 @@ class Ghost:
         if not any(allowed_moves):
             return
 
-        if g.spooked: 
+        if self.spooked: 
             self.last_turned_pos = block_pos
             self.direction = choice([index for index, value in enumerate(allowed_moves) if value])
             return
@@ -405,7 +405,7 @@ class Ghost:
         return (pos.x - 5 <= center_pos.x <= pos.x + 5) and (pos.y - 5 <= center_pos.y <= pos.y + 5)
 
     def respawn(self, board, canvas_size):
-        if not g.respawn1:
+        if not self.respawn1:
             self.target = ghost_door_pos.copy()
             self.calculate_direction(board, canvas_size)
             if self.arrived(ghost_door_pos):
@@ -421,7 +421,7 @@ class Ghost:
             self.direction = 2
             if self.arrived(ghost_door_pos):
                 self.respawn3 = True
-                self.allowed_blocks.remove(9)
+                self.allowed_blocks.discard(9)
                 self.target = self.get_g_target()
                 self.calculate_direction(board, canvas_size)
         else:
@@ -438,11 +438,11 @@ class Ghost:
             self.direction = 2
             if self.arrived(ghost_door_pos):
                 self.spawn2 = True
-                self.allowed_blocks.remove(9)
+                self.allowed_blocks.discard(9)
                 self.target = self.get_g_target()
                 self.calculate_direction(board, canvas_size)
         else:
-            self.allowed_blocks.remove(9)
+            self.allowed_blocks.discard(9)
             self.spawned = True
             self.spawning = False
             
@@ -491,7 +491,7 @@ def get_pinky_target(self):
     unit_height = canvas_size.y / len(board)
     center_pos = pygame.Vector2(player.pos.x + player.size / 2, player.pos.y + player.size / 2) 
     if player.direction == 0:
-        return pygame.Vector2(center_pos.x - 4 * unit_width, center_pos.y - 4 * unit_height)
+        return pygame.Vector2(center_pos.x + 4 * unit_width, center_pos.y)
     elif player.direction == 1:
         return pygame.Vector2(center_pos.x - 4 * unit_width, center_pos.y)
     elif player.direction == 2:
